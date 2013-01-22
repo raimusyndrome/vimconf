@@ -97,7 +97,7 @@ endif
 let &directory = &backupdir 
 " 無限UNDO
 if has('persistent_undo')
-    if exixts('g:my_undo_dir')
+    if exists('g:my_undo_dir')
         let &undodir = g:my_undo_dir
     else
         set undodir = $HOME
@@ -192,27 +192,32 @@ if has('vim_starting')
     call neobundle#rc(expand('~/vimfiles/neobundle'))
 endif
 
-" 必須
+" 必須　------------------------------------------------------------------
+" プラグイン管理
 NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
+" ユーティリティ
 NeoBundle 'https://github.com/Shougo/vimshell.git'
 "NeoBundle 'https://github.com/Shougo/vimsproc.git'
-NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 NeoBundle 'https://github.com/Shougo/unite.vim.git'
 NeoBundle 'https://github.com/tsukkee/unite-tag'
 NeoBundle 'https://github.com/h1mesuke/unite-outline'
 NeoBundle 'https://github.com/tsukkee/unite-help'
 NeoBundle 'https://github.com/Shougo/vimfiler.git'
-" オプション
-NeoBundle 'https://github.com/ujihisa/blogger.vim'
 NeoBundle 'https://github.com/scrooloose/nerdcommenter'
-NeoBundle 'https://github.com/thinca/vim-guicolorscheme.git'
-
+" 補完
+NeoBundle 'https://github.com/Shougo/neocomplcache.git'
+" オプション -------------------------------------------------------------
+" サービス利用
+NeoBundle 'https://github.com/ujihisa/blogger.vim'
 NeoBundle 'https://github.com/basyura/TweetVim.git'
 NeoBundle 'https://github.com/tyru/open-browser.vim.git'
 NeoBundle 'https://github.com/basyura/twibill.vim.git'
 NeoBundle 'https://github.com/mattn/webapi-vim.git'
+NeoBundle 'majutsushi/tagbar.git'   " ctags利用のoutline表示
+NeoBundle 'mattn/gist-vim'  " gist連携
 " カラースキーム
 NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'https://github.com/thinca/vim-guicolorscheme.git'
 " 不要？
 "NeoBundle 'https://github.com/Shougo/clang_complete.git'
 "NeoBundle 'https://github.com/Shougo/echodoc.git'
