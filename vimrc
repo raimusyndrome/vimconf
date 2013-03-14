@@ -291,7 +291,6 @@ nnoremap <silent> [Unite]o :<C-u>Unite -vertical -winwidth=30 outline<CR>
 " リスト一覧
 "nmap [Twit]l :OwnedListsTwitter
 
-" Twitvim
 let twitvim_count = 100
 let twitvim_enable_ruby = 1
 let twitvim_proxy = 'proxy.sso.ntts.co.jp:18080'
@@ -299,6 +298,12 @@ let twitvim_proxy = 'proxy.sso.ntts.co.jp:18080'
 " ブラウザコマンドを指定してもうまく起動しない？
 "let twitvim_browser_cmd = "firefox.exe"
 "let twitvim_browser_cmd = "C:\Program\ Files\Mozilla\ Firefox\firefox.exe"
+
+" TweetVim
+" トークンの格納ディレクトリ
+"let g:tweetvim_config_dir = ''
+let $http_proxy = 'proxy.sso.ntts.co.jp:18080'
+let $HTTPS_PROXY = 'proxy.sso.ntts.co.jp:18080'
 
 " neocomplcache
 " Disable AutoComplPop.
