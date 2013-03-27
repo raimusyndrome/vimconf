@@ -56,5 +56,9 @@ endif
 nnoremap lrc :source $MYVIMRC<CR>:source $MYGVIMRC<CR>
 nnoremap lrg :source $MYGVIMRC<CR>
 " 設定ファイル編集
-nnoremap erg :e $MYGVIMRC<CR>
-
+"nnoremap erg :e $MYGVIMRC<CR>
+if has('win32') || has('win64')
+    nnoremap erg :<C-u>e $MYVIMREPO\gvimrc<CR>
+else
+    nnoremap erg :<C-u>e $MYGVIMRC<CR>
+endif

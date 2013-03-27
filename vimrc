@@ -5,12 +5,14 @@
 "---------------------------------------------------------------------------
 " 初期化
 autocmd!
-" マシン依存設定の識別子
-if has('win32') || has('win64')
-    source $VIM/machine_depend.vim
+" vim設定リポジトリのディレクトリ
+if has('win32') || has('win64') 
+    let $MYVIMREPO = $VIM . '/vimfiles'
 else
-    source $HOME/.uservim/machine_depend.vim
+    let $MYVIMREPO = $HOME . '/.vim/vimfiles'
 endif
+" マシン依存設定の識別子
+source $MYVIMREPO/machine_depend.vim
 
 " userautoloadディレクトリ
 " 分割した設定ファイルをuserautoloadに置き、
@@ -169,7 +171,11 @@ nnoremap jfh :<C-u>find %<.h<CR>
 " 設定ファイル読み込み
 nnoremap lrc :<C-u>source $MYVIMRC<CR>
 " 設定ファイル編集
-nnoremap erc :<C-u>e $MYVIMRC<CR>
+if has('win32') || has('win64')
+    nnoremap erc :<C-u>e $VIM\vimfiles\vimrc<CR>
+else
+    nnoremap erc :<C-u>e $MYVIMRC<CR>
+endif
 
 " qでウィンドウを閉じる
 autocmd FileType help,twitvim,taglist nnoremap <buffer> q <C-w>c
@@ -213,10 +219,10 @@ NeoBundle 'https://github.com/basyura/TweetVim.git'
 NeoBundle 'https://github.com/tyru/open-browser.vim.git'
 NeoBundle 'https://github.com/basyura/twibill.vim.git'
 NeoBundle 'https://github.com/mattn/webapi-vim.git'
-NeoBundle 'majutsushi/tagbar.git'   " ctags利用のoutline表示
-NeoBundle 'mattn/gist-vim'  " gist連携
+NeoBundle 'https://github.com/majutsushi/tagbar.git'   " ctags利用のoutline表示
+NeoBundle 'https://github.com/mattn/gist-vim'  " gist連携
 " カラースキーム
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat'
 NeoBundle 'https://github.com/thinca/vim-guicolorscheme.git'
 " 不要？
 "NeoBundle 'https://github.com/Shougo/clang_complete.git'
