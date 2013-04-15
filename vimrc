@@ -12,7 +12,10 @@ else
     let $MYVIMREPO = $HOME . '/.vim/vimfiles'
 endif
 " マシン依存設定の識別子
-source $MYVIMREPO/machine_depend.vim
+" if filereadable($MYVIMREPO . '/machine_depend.vim')
+if filereadable( $MYVIMREPO . '/machine_depend.vim')
+    source $MYVIMREPO/machine_depend.vim
+endif
 
 " userautoloadディレクトリ
 " 分割した設定ファイルをuserautoloadに置き、
@@ -203,13 +206,16 @@ endif
 NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
 " ユーティリティ
 NeoBundle 'https://github.com/Shougo/vimshell.git'
-"NeoBundle 'https://github.com/Shougo/vimsproc.git'
+NeoBundle 'https://github.com/Shougo/vimproc.git'
 NeoBundle 'https://github.com/Shougo/unite.vim.git'
 NeoBundle 'https://github.com/tsukkee/unite-tag'
 NeoBundle 'https://github.com/h1mesuke/unite-outline'
 NeoBundle 'https://github.com/tsukkee/unite-help'
+NeoBundle 'https://github.com/osyo-manga/unite-quickfix.git'
 NeoBundle 'https://github.com/Shougo/vimfiler.git'
 NeoBundle 'https://github.com/scrooloose/nerdcommenter'
+" 開発
+NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 " 補完
 NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 " オプション -------------------------------------------------------------
@@ -219,7 +225,7 @@ NeoBundle 'https://github.com/basyura/TweetVim.git'
 NeoBundle 'https://github.com/tyru/open-browser.vim.git'
 NeoBundle 'https://github.com/basyura/twibill.vim.git'
 NeoBundle 'https://github.com/mattn/webapi-vim.git'
-NeoBundle 'https://github.com/majutsushi/tagbar.git'   " ctags利用のoutline表示
+NeoBundle 'httpe://github.com/majutsushi/tagbar.git'   " ctags利用のoutline表示
 NeoBundle 'https://github.com/mattn/gist-vim'  " gist連携
 " カラースキーム
 NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat'
@@ -408,12 +414,12 @@ let g:html_default_charset = 'utf-8'
 let g:no_html_tab_mapping = 'yes'
 
 " QuickRun
-let g:quickrun_config = {
-\ 'cpp/vc': {
-\   'exec': ['%c %o %s /nologo /Fo%s:p:r.obj /Fe%s:p:r.exe > nul',
-\             '%S:p:r.exe %a', 'del %s:p:r.exe %s:p:r.obj'],
-\ },
-\}
+" let g:quickrun_config = {
+" \ 'cpp/vc': {
+" \   'exec': ['%c %o %s /nologo /Fo%s:p:r.obj /Fe%s:p:r.exe > nul',
+" \             '%S:p:r.exe %a', 'del %s:p:r.exe %s:p:r.obj'],
+" \ },
+" \}
 
 " nerdcommenter
 " Nerd_Commenter の基本設定
@@ -426,8 +432,8 @@ let NERDSpaceDelims = 1
 " nmap , [NERD]
 " nnoremap [NERD]<Space> <Plug>NERDCommenterToggle
 " vnoremap [NERD]<Space> <Plug>NERDCommenterToggle
-nnoremap ,<Space> <Plug>NERDCommenterToggle
-vnoremap ,<Space> <Plug>NERDCommenterToggle
+nmap ,<Space> <Plug>NERDCommenterToggle " なぜかnoremapにすると上手くいかない
+vmap ,<Space> <Plug>NERDCommenterToggle
  
 
 " c.vim
