@@ -216,6 +216,7 @@ NeoBundle 'https://github.com/Shougo/vimfiler.git'
 NeoBundle 'https://github.com/scrooloose/nerdcommenter'
 " 開発
 NeoBundle 'https://github.com/thinca/vim-quickrun.git'
+NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 " 補完
 NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 " オプション -------------------------------------------------------------
@@ -420,6 +421,8 @@ let g:no_html_tab_mapping = 'yes'
 " \             '%S:p:r.exe %a', 'del %s:p:r.exe %s:p:r.obj'],
 " \ },
 " \}
+let g:quickrun_config = {}
+let g:quickrun_config.groovy = {'command' : 'groovyclient'}
 
 " nerdcommenter
 " Nerd_Commenter の基本設定
