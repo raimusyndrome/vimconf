@@ -129,7 +129,14 @@ set cmdheight=2
 "autocmd BufNewFile * silent! 0r $VIM/templates/%:e.tpl
 " バッファを開いた時に、カレントディレクトリを自動で移動
 "autocmd BufEnter * execute ":lcd " . expand("%:p:h")
+" 保存時にタグを作成する
+" autocmd BufWritePost *.c,*.cc,*.cpp,*.h silent !ctags -a --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ <afile>
 
+" インクルード補完用設定（C++）
+" augroup cpp-path
+    " autocmd!
+    " autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
+" augroup END
 
 "---------------------------------------------------------------------------
 " キーバインド
@@ -170,6 +177,9 @@ nnoremap <silent> [ChDir]b :<C-u>cd %:h<CR>
 
 " ヘッダファイルを開く
 nnoremap jfh :<C-u>find %<.h<CR>
+" autocmd FileType cpp nnoremap <buffer> jfc :<C-u>find %<.cpp<CR>
+autocmd FileType cpp nnoremap <buffer> jfc :<C-u>find %<.c<CR>
+" autocmd FileType c nnoremap <buffer> jfc :<C-u>find %<.c<CR>
 
 " 設定ファイル読み込み
 nnoremap lrc :<C-u>source $MYVIMRC<CR>
@@ -209,16 +219,30 @@ NeoBundle 'https://github.com/Shougo/vimshell.git'
 NeoBundle 'https://github.com/Shougo/vimproc.git'
 NeoBundle 'https://github.com/Shougo/unite.vim.git'
 NeoBundle 'https://github.com/tsukkee/unite-tag'
-NeoBundle 'https://github.com/h1mesuke/unite-outline'
+" NeoBundle 'https://github.com/h1mesuke/unite-outline'
+NeoBundle 'https://github.com/Shougo/unite-outline'
 NeoBundle 'https://github.com/tsukkee/unite-help'
 NeoBundle 'https://github.com/osyo-manga/unite-quickfix.git'
 NeoBundle 'https://github.com/Shougo/vimfiler.git'
 NeoBundle 'https://github.com/scrooloose/nerdcommenter'
+" NeoBundleLazy 'https://github.com/kana/vim-altr'
+NeoBundle 'https://github.com/kana/vim-altr'
 " 開発
 NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 NeoBundle 'https://github.com/tpope/vim-fugitive.git'
+NeoBundleLazy 'https://github.com/vim-jp/cpp-vim' , { 
+    \ 'autoload' : {'filetypes' :  'cpp' }
+    \ }
 " 補完
 NeoBundle 'https://github.com/Shougo/neocomplcache.git'
+" NeoBundle 'https://github.com/Shougo/neocomplete.vim'
+" NeoBundle 'https://github.com/Shougo/neosnippet'
+" NeoBundleLazy 'https://github.com/osyo-manga/vim-stargate', {
+"   \ 'autoload' : {'filetypes' : 'cpp'}
+"   \ }
+" 表示
+" NeoBundle 'https://github.com/bling/vim-airline'
+" NeoBundle "https://github.com/osyo-manga/unite-airline_themes'
 " オプション -------------------------------------------------------------
 " サービス利用
 NeoBundle 'https://github.com/ujihisa/blogger.vim'
@@ -291,6 +315,22 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " unite-online
 nnoremap <silent> [Unite]o :<C-u>Unite -vertical -winwidth=30 outline<CR>
 
+" tagbar
+nnoremap <silent> to :TagbarToggle<CR>
+" 左側に表示する
+let g:tagbar_left = 1
+" 表示幅
+" let g:tagbar_width = 40
+" タグジャンプ後自動クローズ
+let g:tagbar_autoclose = 1
+" 表示後自動フォーカス
+let g:tagbar_autofocus = 1
+" ソート実行有無
+let g:tagbar_sort = 0
+" コンパクト表示
+" let g:tagbar_compact = 1
+
+
 " Twitvim
 " Twitter Prefix
 "nnoremap [Twit] <Nop>
@@ -311,6 +351,12 @@ let twitvim_proxy = 'proxy.sso.ntts.co.jp:18080'
 " ブラウザコマンドを指定してもうまく起動しない？
 "let twitvim_browser_cmd = "firefox.exe"
 "let twitvim_browser_cmd = "C:\Program\ Files\Mozilla\ Firefox\firefox.exe"
+
+" Open Browser
+" let g:openbrowser_open_commands = ['firefox.exe']
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " TweetVim
 " トークンの格納ディレクトリ
@@ -362,7 +408,7 @@ smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 " inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+" inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
@@ -429,6 +475,12 @@ let g:quickrun_config.groovy = {'command' : 'groovyclient'}
 let g:NERDCreateDefaultMappings = 0
 let NERDSpaceDelims = 1
 
+" language
+" let NERD_c_alt_style = 1
+let g:NERDCustomDelimiters = {
+    \ 'c' : { 'left' : '//', 'leftAlt': '//*', 'rightAlt': '*//' },
+    \}
+
 " Key Map
 " Prefix key
 " nnoremap [NERD] <Nop>
@@ -438,7 +490,6 @@ let NERDSpaceDelims = 1
 nmap ,<Space> <Plug>NERDCommenterToggle " なぜかnoremapにすると上手くいかない
 vmap ,<Space> <Plug>NERDCommenterToggle
  
-
 " c.vim
 ":filetype plugin on
 
@@ -448,6 +499,30 @@ if ComputerName() == g:work_desk
     let g:evervim_workdir = "C:\\Documents\ and\ Settings\\Administrator\\My\ Documents\\802_vim\\evernote"
     "let g:evervim_proxy = "proxy.sso.ntts.co.jp:18080"
 endif
+
+" fugitive
+" Prefix key
+nnoremap [Git] <Nop>
+nmap @ [Git]
+" 状態確認
+nnoremap [Git]s :Gstatus<CR>
+" ステージ（git add）
+nnoremap [Git]w :Gwrite<CR>
+" コミット（git commit）
+nnoremap [Git]c :Gcommit<CR>
+" 直前のリビジョンを表示
+nnoremap [Git]r :Gread<CR>
+" diff表示
+nnoremap [Git]d :Gdiff<CR>
+" blame表示
+nnoremap [Git]b :Gblame<CR>
+            
+" vim-altr
+" nnoremap <Leader>a <Plug>(altr-forward)
+" nnoremap jfa <Plug>(altr-forward)
+" nmap <Leader>a <Plug>(altr-forward)
+" nmap jfa <Plug>(altr-forward)
+nmap <F2> <Plug>(altr-forward)
 
 " vim戦闘力計測
 function! Scouter(file, ...)
