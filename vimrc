@@ -57,6 +57,8 @@ set shiftwidth=4
 set softtabstop=0
 " カーソル行の上下表示幅
 set scrolloff=5
+" ステータスラインの表示
+set laststatus=2
 
 "---------------------------------------------------------------------------
 " エンコード
@@ -243,6 +245,7 @@ NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 " 表示
 " NeoBundle 'https://github.com/bling/vim-airline'
 " NeoBundle "https://github.com/osyo-manga/unite-airline_themes'
+NeoBundle 'https://github.com/itchyny/lightline.vim'
 " オプション -------------------------------------------------------------
 " サービス利用
 NeoBundle 'https://github.com/ujihisa/blogger.vim'
@@ -277,6 +280,10 @@ call pathogen#runtime_append_all_bundles()
 " ヘルプを表示可能にする
 call pathogen#helptags()
 
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 "==========================================================================
 " unite.vim
