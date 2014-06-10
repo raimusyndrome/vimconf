@@ -7,9 +7,9 @@
 autocmd!
 " vim設定リポジトリのディレクトリ
 if has('win32') || has('win64') 
-    let $MYVIMREPO = $VIM . '/vimfiles'
+    let $MYVIMREPO = $VIM . '/vimconf'
 else
-    let $MYVIMREPO = $HOME . '/.vim/vimfiles'
+    let $MYVIMREPO = $HOME . '/.vim/vimconf'
 endif
 " マシン依存設定の識別子
 " if filereadable($MYVIMREPO . '/machine_depend.vim')
@@ -187,7 +187,7 @@ autocmd FileType cpp nnoremap <buffer> jfc :<C-u>find %<.c<CR>
 nnoremap lrc :<C-u>source $MYVIMRC<CR>
 " 設定ファイル編集
 if has('win32') || has('win64')
-    nnoremap erc :<C-u>e $VIM\vimfiles\vimrc<CR>
+    nnoremap erc :<C-u>e $MYVIMREPO\vimrc<CR>
 else
     nnoremap erc :<C-u>e $MYVIMRC<CR>
 endif
@@ -215,7 +215,7 @@ endif
 
 " 必須　------------------------------------------------------------------
 " プラグイン管理
-NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
+NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
 " ユーティリティ
 NeoBundle 'https://github.com/Shougo/vimshell.git'
 NeoBundle 'https://github.com/Shougo/vimproc.git'
@@ -229,12 +229,14 @@ NeoBundle 'https://github.com/Shougo/vimfiler.git'
 NeoBundle 'https://github.com/scrooloose/nerdcommenter'
 " NeoBundleLazy 'https://github.com/kana/vim-altr'
 NeoBundle 'https://github.com/kana/vim-altr'
+NeoBundle 'https://github.com/tpope/vim-surround.git'
 " 開発
 NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 NeoBundleLazy 'https://github.com/vim-jp/cpp-vim' , { 
     \ 'autoload' : {'filetypes' :  'cpp' }
     \ }
+NeoBundle 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 " 補完
 NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 " NeoBundle 'https://github.com/Shougo/neocomplete.vim'
@@ -247,6 +249,8 @@ NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 " NeoBundle "https://github.com/osyo-manga/unite-airline_themes'
 NeoBundle 'https://github.com/itchyny/lightline.vim'
 " オプション -------------------------------------------------------------
+" プラグイン管理
+NeoBundle 'https://github.com/tpope/vim-pathogen.git'
 " サービス利用
 NeoBundle 'https://github.com/ujihisa/blogger.vim'
 NeoBundle 'https://github.com/basyura/TweetVim.git'
@@ -256,8 +260,12 @@ NeoBundle 'https://github.com/mattn/webapi-vim.git'
 NeoBundle 'httpe://github.com/majutsushi/tagbar.git'   " ctags利用のoutline表示
 NeoBundle 'https://github.com/mattn/gist-vim'  " gist連携
 " カラースキーム
-NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat'
+NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat' , { 'script_type' : 'colors' }
 NeoBundle 'https://github.com/thinca/vim-guicolorscheme.git'
+NeoBundle 'http://www.vim.org/scripts/download_script.php?src_id=13400' , {
+    \ 'type__filename' : 'wombat256.vim' , 
+    \ 'script_type' : 'colors' 
+    \ }
 " 不要？
 "NeoBundle 'https://github.com/Shougo/clang_complete.git'
 "NeoBundle 'https://github.com/Shougo/echodoc.git'
@@ -530,6 +538,15 @@ nnoremap [Git]b :Gblame<CR>
 " nmap <Leader>a <Plug>(altr-forward)
 " nmap jfa <Plug>(altr-forward)
 nmap <F2> <Plug>(altr-forward)
+
+" DoxygenToolkit
+let g:load_doxygen_syntax=1
+let g:DoxygenToolkit_startCommentTag = "/*! "
+let g:DoxygenToolkit_startCommentBlock = "/*"
+let g:DoxygenToolkit_briefTag_pre = "\\brief "
+let g:DoxygenToolkit_paramTag_pre = "\\param "
+let g:DoxygenToolkit_paramTag_post = " [I/O] "
+let g:DoxygenToolkit_returnTag = "\\return \n * \\retval"
 
 " vim戦闘力計測
 function! Scouter(file, ...)
