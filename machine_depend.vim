@@ -50,6 +50,13 @@ let g:neobundlerc= g:my_plugin_dir . 'neobundle'
 " evervimの作業ディレクトリ
 " let g:evervimpath='$VIM/evernote'
 let g:evervimpath= g:my_data_dir . 'evernote'
+" evervim
+" 作業ディレクトリ
+if ComputerName() == g:work_desk 
+    let g:evervim_workdir = "C:\\Documents\ and\ Settings\\Administrator\\My\ Documents\\802_vim\\evernote"
+    "let g:evervim_proxy = "proxy.sso.ntts.co.jp:18080"
+endif
+
 
 " qfixhowm
 set runtimepath+=~/vimfiles/bundle/qfixapp
@@ -57,4 +64,29 @@ set runtimepath+=~/vimfiles/bundle/qfixapp
 let howm_dir='C:\Documents\ and\ Settings\Administrator\My\ Documents\806_memo'
 let howm_fileencoding='cp932'
 let howm_fileformat='dos'
+
+let g:network_proxy = 'proxy.sso.ntts.co.jp:18080'
+
+" ディレクトリ移動(dir)
+if      ComputerName() == g:work_note 
+    nnoremap [ChDir]m :<C-u>cd C:\Documents and Settings\student\My Documents\Kami Data\標準<CR>
+    nnoremap [ChDir]x :<C-u>cd C:\Documents and Settings\student\My Documents\291_Code_work<CR>
+    nnoremap [ChDir]c :<C-u>cd C:\Documents and Settings\student\My Documents\210_Billy_TP\svn\tp\src<CR>
+    nnoremap [ChDir]r :<C-u>cd C:\Documents and Settings\student\My Documents\210_Billy_TP\svn\tp\site-ruby\bgtester<CR>
+    nnoremap [ChDir]g :<C-u>cd C:\Documents and Settings\student\My Documents\210_Billy_TP\git\tp\src<CR>
+    "nnoremap [ChDir]gr :cd C:\Documents and Settings\student\My Documents\210_Billy_TP\git\tp\site-ruby\bgtester<CR>
+elseif  ComputerName() == g:work_desk 
+    nnoremap [ChDir]x :<C-u>cd C:\Documents and Settings\Administrator\My Documents\290_Code_work<CR>
+    "nnoremap [ChDir]x :<C-u>cd C:\000_Code_work<CR>
+    nnoremap [ChDir]m :<C-u>cd C:\Documents and Settings\Administrator\My Documents\802_vim\memo<CR>
+endif
+
+" pathongen
+"if g:raimu_computer == 'dyna_note'
+if      ComputerName() == g:work_note 
+    nmap vba :let g:vimball_home="C:\\Documents\ and\ Settings\\student\\vimfiles\\bundle\\"
+"elseif g:raimu_computer == 'dell_desk'
+elseif  ComputerName() == g:work_desk 
+    nmap vba :let g:vimball_home="C:\\Documents\ and\ Settings\\Administrator\\vimfiles\\bundle\\"
+endif
 

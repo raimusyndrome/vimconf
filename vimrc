@@ -157,18 +157,6 @@ inoremap <F5> <ESC><C-w>w
 " %:h=バッファのファイルがあるディレクトリのパス
 nnoremap [ChDir] <Nop>
 nmap jd [ChDir]
-if      ComputerName() == g:work_note 
-    nnoremap [ChDir]m :<C-u>cd C:\Documents and Settings\student\My Documents\Kami Data\標準<CR>
-    nnoremap [ChDir]x :<C-u>cd C:\Documents and Settings\student\My Documents\291_Code_work<CR>
-    nnoremap [ChDir]c :<C-u>cd C:\Documents and Settings\student\My Documents\210_Billy_TP\svn\tp\src<CR>
-    nnoremap [ChDir]r :<C-u>cd C:\Documents and Settings\student\My Documents\210_Billy_TP\svn\tp\site-ruby\bgtester<CR>
-    nnoremap [ChDir]g :<C-u>cd C:\Documents and Settings\student\My Documents\210_Billy_TP\git\tp\src<CR>
-    "nnoremap [ChDir]gr :cd C:\Documents and Settings\student\My Documents\210_Billy_TP\git\tp\site-ruby\bgtester<CR>
-elseif  ComputerName() == g:work_desk 
-    nnoremap [ChDir]x :<C-u>cd C:\Documents and Settings\Administrator\My Documents\290_Code_work<CR>
-    "nnoremap [ChDir]x :<C-u>cd C:\000_Code_work<CR>
-    nnoremap [ChDir]m :<C-u>cd C:\Documents and Settings\Administrator\My Documents\802_vim\memo<CR>
-endif
 " バッファのファイルがあるディレクトリに移動
 nnoremap <silent> [ChDir]b :<C-u>cd %:h<CR>
 
@@ -260,7 +248,7 @@ NeoBundle 'https://github.com/mattn/webapi-vim.git'
 NeoBundle 'httpe://github.com/majutsushi/tagbar.git'   " ctags利用のoutline表示
 NeoBundle 'https://github.com/mattn/gist-vim'  " gist連携
 " カラースキーム
-NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat' , { 'script_type' : 'colors' }
+NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat'
 NeoBundle 'https://github.com/thinca/vim-guicolorscheme.git'
 NeoBundle 'http://www.vim.org/scripts/download_script.php?src_id=13400' , {
     \ 'type__filename' : 'wombat256.vim' , 
@@ -276,13 +264,6 @@ filetype plugin on
 filetype indent on
 
 " pathongen
-"if g:raimu_computer == 'dyna_note'
-if      ComputerName() == g:work_note 
-    nmap vba :let g:vimball_home="C:\\Documents\ and\ Settings\\student\\vimfiles\\bundle\\"
-"elseif g:raimu_computer == 'dell_desk'
-elseif  ComputerName() == g:work_desk 
-    nmap vba :let g:vimball_home="C:\\Documents\ and\ Settings\\Administrator\\vimfiles\\bundle\\"
-endif
 " bundle配下をプラグインとして読み込む
 call pathogen#runtime_append_all_bundles()
 " ヘルプを表示可能にする
@@ -361,7 +342,9 @@ let g:tagbar_sort = 0
 
 let twitvim_count = 100
 let twitvim_enable_ruby = 1
-let twitvim_proxy = 'proxy.sso.ntts.co.jp:18080'
+if exists('g:network_proxy')
+    let twitvim_proxy = g:network_proxy
+endif
 "let twitvim_proxy_login_b64 = 
 " ブラウザコマンドを指定してもうまく起動しない？
 "let twitvim_browser_cmd = "firefox.exe"
@@ -376,8 +359,10 @@ vmap gx <Plug>(openbrowser-smart-search)
 " TweetVim
 " トークンの格納ディレクトリ
 "let g:tweetvim_config_dir = ''
-let $http_proxy = 'proxy.sso.ntts.co.jp:18080'
-let $HTTPS_PROXY = 'proxy.sso.ntts.co.jp:18080'
+if exists('g:network_proxy')
+    let $http_proxy = g:network_proxy
+    let $HTTPS_PROXY = g:network_proxy
+endif
 
 " neocomplcache
 " Disable AutoComplPop.
@@ -507,13 +492,6 @@ vmap ,<Space> <Plug>NERDCommenterToggle
  
 " c.vim
 ":filetype plugin on
-
-" evervim
-" 作業ディレクトリ
-if ComputerName() == g:work_desk 
-    let g:evervim_workdir = "C:\\Documents\ and\ Settings\\Administrator\\My\ Documents\\802_vim\\evernote"
-    "let g:evervim_proxy = "proxy.sso.ntts.co.jp:18080"
-endif
 
 " fugitive
 " Prefix key
