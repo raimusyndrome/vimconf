@@ -8,5 +8,8 @@ elseif  ComputerName() == g:work_desk
 elseif  ComputerName() == g:work_worksta
     set columns=180
     set lines=60
+else
+    set columns=90
+    set lines=40
 endif
 
