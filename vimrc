@@ -245,15 +245,12 @@ NeoBundle 'https://github.com/basyura/TweetVim.git'
 NeoBundle 'https://github.com/tyru/open-browser.vim.git'
 NeoBundle 'https://github.com/basyura/twibill.vim.git'
 NeoBundle 'https://github.com/mattn/webapi-vim.git'
-NeoBundle 'httpe://github.com/majutsushi/tagbar.git'   " ctags利用のoutline表示
+NeoBundle 'https://github.com/majutsushi/tagbar.git'   " ctags利用のoutline表示
 NeoBundle 'https://github.com/mattn/gist-vim'  " gist連携
 " カラースキーム
 NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat'
 NeoBundle 'https://github.com/thinca/vim-guicolorscheme.git'
-NeoBundle 'http://www.vim.org/scripts/download_script.php?src_id=13400' , {
-    \ 'type__filename' : 'wombat256.vim' , 
-    \ 'script_type' : 'colors' 
-    \ }
+" NeoBundle 'http://www.vim.org/scripts/download_script.php?src_id=13400' , { 'type__filename' : 'wombat256.vim' , 'script_type' : 'colors' }
 " 不要？
 "NeoBundle 'https://github.com/Shougo/clang_complete.git'
 "NeoBundle 'https://github.com/Shougo/echodoc.git'
@@ -265,9 +262,9 @@ filetype indent on
 
 " pathongen
 " bundle配下をプラグインとして読み込む
-call pathogen#runtime_append_all_bundles()
+" call pathogen#runtime_append_all_bundles()
 " ヘルプを表示可能にする
-call pathogen#helptags()
+" call pathogen#helptags()
 
 " lightline
 let g:lightline = {
