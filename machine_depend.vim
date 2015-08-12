@@ -67,7 +67,7 @@ let howm_dir='C:\Documents\ and\ Settings\Administrator\My\ Documents\806_memo'
 let howm_fileencoding='cp932'
 let howm_fileformat='dos'
 
-let g:network_proxy = 'proxy.sso.ntts.co.jp:18080'
+" let g:network_proxy = 'proxy.sso.ntts.co.jp:18080'
 
 " ディレクトリ移動(dir)
 if      ComputerName() == g:work_note 
