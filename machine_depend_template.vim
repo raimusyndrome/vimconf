@@ -34,5 +34,5 @@ let g:evervimpath= g:my_data_dir . 'evernote'
 " let howm_fileformat='dos'
 
 " Proxy設定
-let g:network_proxy = 'proxy.sso.ntts.co.jp:18080'
+" let g:network_proxy = ''
 
