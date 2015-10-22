@@ -197,16 +197,29 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-    set runtimepath+=~\\vimfiles\\bundle\\neobundle.vim
-    call neobundle#rc(expand('~/vimfiles/neobundle'))
+    if has('win32') || has('win64')
+        set runtimepath+=~\\vimfiles\\bundle\\neobundle.vim
+        "call neobundle#rc(expand('~/vimfiles/neobundle'))
+    else
+        set runtimepath+=~/.vim/bundle/neobundle.vim
+        "call neobundle#rc(expand('~/.vim/neobundle'))
+    endif
 endif
 
+call neobundle#begin(expand('~/.vim/bundle'))
 " 必須　------------------------------------------------------------------
 " プラグイン管理
 NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
 " ユーティリティ
+NeoBundle 'https://github.com/Shougo/vimproc.git', {
+    \ 'build' : {
+        \ 'windows' : 'make -f make_mingw32.mak',
+        \ 'cygwin' : 'make -f make_cygwin.mak',
+        \ 'mac' : 'make -f make_mac.mak',
+        \ 'unix' : 'make -f make_unix.mak',
+    \ },
+\ }
 NeoBundle 'https://github.com/Shougo/vimshell.git'
-NeoBundle 'https://github.com/Shougo/vimproc.git'
 NeoBundle 'https://github.com/Shougo/unite.vim.git'
 NeoBundle 'https://github.com/tsukkee/unite-tag'
 " NeoBundle 'https://github.com/h1mesuke/unite-outline'
@@ -260,14 +273,16 @@ NeoBundle 'http://www.vim.org/scripts/download_script.php?src_id=13400' , {
 "NeoBundle 'https://github.com/Shougo/vim-vcs.git'
 "NeoBundle 'https://github.com/Shougo/vinarise.git'
 
+call neobundle#end()
+
 filetype plugin on
 filetype indent on
 
 " pathongen
 " bundle配下をプラグインとして読み込む
-call pathogen#runtime_append_all_bundles()
+"call pathogen#runtime_append_all_bundles()
 " ヘルプを表示可能にする
-call pathogen#helptags()
+"call pathogen#helptags()
 
 " lightline
 let g:lightline = {
