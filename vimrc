@@ -238,6 +238,12 @@ NeoBundleLazy 'https://github.com/vim-jp/cpp-vim' , {
     \ 'autoload' : {'filetypes' :  'cpp' }
     \ }
 NeoBundle 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
+" JavaScript
+NeoBundleLazy 'https://github.com/jelera/vim-javascript-syntax.git', {
+    \ 'autoload' : {'filetypes' : ['javascript']}
+    \ }
+NeoBundle 'https://github.com/digitaltoad/vim-jade.git'
+NeoBundle 'https://github.com/leshill/vim-json.git'
 " 補完
 NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 " NeoBundle 'https://github.com/Shougo/neocomplete.vim'
@@ -262,6 +268,7 @@ NeoBundle 'httpe://github.com/majutsushi/tagbar.git'   " ctags利用のoutline�
 NeoBundle 'https://github.com/mattn/gist-vim'  " gist連携
 " カラースキーム
 NeoBundle 'https://github.com/jeffreyiacono/vim-colors-wombat'
+NeoBundle 'https://github.com/altercation/vim-colors-solarized.git'
 NeoBundle 'https://github.com/thinca/vim-guicolorscheme.git'
 NeoBundle 'http://www.vim.org/scripts/download_script.php?src_id=13400' , {
     \ 'type__filename' : 'wombat256.vim' , 
@@ -284,6 +291,22 @@ filetype indent on
 " ヘルプを表示可能にする
 "call pathogen#helptags()
 
+" ファイルタイプ単位設定
+"
+" Javascript
+" autocmd BufNewFile,BufRead *.js  set tabstop=2 shiftwidth=2 expandtab
+"
+" JSON
+autocmd BufNewFile,BufRead *.json  set filetype=json
+" autocmd BufNewFile,BufRead *.json  set tabstop=2 shiftwidth=2 expandtab
+
+" Jade
+autocmd BufNewFile,BufRead *.jade  setf jade
+" autocmd BufNewFile,BufRead *.jade  set tabstop=2 shiftwidth=2 expandtab
+" let g:quickrun_config['jade'] = {
+      " \ 'command': 'jade', 'cmdopt': '-P', 'exec':['%c &o < %s']
+      " \ }
+"
 " lightline
 let g:lightline = {
       \ 'colorscheme': 'wombat',
