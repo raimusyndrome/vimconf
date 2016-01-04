@@ -211,8 +211,8 @@ else
     let g:my_bundle_dir = '~/.vim/bundle'
 endif
 
-call neobundle#begin(expand('~/vimfiles/bundle'))
-" call neobundle#begin(expand(g:my_bundle_dir))
+" call neobundle#begin(expand('~/vimfiles/bundle'))
+call neobundle#begin(expand(g:my_bundle_dir))
 " 必須　------------------------------------------------------------------
 " プラグイン管理
 NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
