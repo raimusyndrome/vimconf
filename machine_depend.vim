@@ -10,7 +10,7 @@ let g:my_note_vaio = 'vaio_note'
 let g:work_worksta = 'dell_workstation'
 
 " マシン識別子
-let g:raimu_computer = g:work_worksta
+let g:raimu_computer = g:my_note_vaio
 
 function! ComputerName()
     return g:raimu_computer
@@ -25,6 +25,8 @@ if      ComputerName() == g:work_note
 elseif  ComputerName() == g:work_desk 
     let g:my_backup_dir ='C:\Documents and Settings\Administrator\My Documents\902_backup\vim'
 elseif  ComputerName() == g:my_note_vaio 
+    let g:my_backup_dir = 'C:\Users\known\Documents\vim\backup'
+    let g:my_undo_dir = 'C:\Users\known\Documents\vim\undo'
 elseif  ComputerName() == g:work_worksta 
     let g:my_backup_dir = 'G:\Documents\803_backup\vim'
     let g:my_undo_dir = 'G:\Documents\803_backup\vim'
@@ -65,7 +67,7 @@ let howm_dir='C:\Documents\ and\ Settings\Administrator\My\ Documents\806_memo'
 let howm_fileencoding='cp932'
 let howm_fileformat='dos'
 
-let g:network_proxy = 'proxy.sso.ntts.co.jp:18080'
+" let g:network_proxy = 'proxy.sso.ntts.co.jp:18080'
 
 " ディレクトリ移動(dir)
 if      ComputerName() == g:work_note 
