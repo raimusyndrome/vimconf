@@ -506,7 +506,13 @@ let g:no_html_tab_mapping = 'yes'
 " \ },
 " \}
 let g:quickrun_config = {}
-let g:quickrun_config.groovy = {'command' : 'groovyclient'}
+let g:quickrun_config.groovy = {
+    \ 'command' : 'groovyclient'
+    \}
+let g:quickrun_config['javascript/mocha'] = {
+    \ 'command': 'mocha',
+    \ 'tempfile': '%{tempfile()}.js'
+    \}
 
 " nerdcommenter
 " Nerd_Commenter の基本設定
