@@ -242,7 +242,8 @@ NeoBundle 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 NeoBundleLazy 'https://github.com/jelera/vim-javascript-syntax.git', {
     \ 'autoload' : {'filetypes' : ['javascript']}
     \ }
-NeoBundle 'https://github.com/digitaltoad/vim-jade.git'
+" NeoBundle 'https://github.com/digitaltoad/vim-jade.git'
+NeoBundle 'https://github.com/digitaltoad/vim-pug.git'
 NeoBundle 'https://github.com/leshill/vim-json.git'
 " 補完
 NeoBundle 'https://github.com/Shougo/neocomplcache.git'
